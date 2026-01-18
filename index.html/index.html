@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+<meta charset="UTF-8">
+<title>love💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:#fff0f5;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:sans-serif;
+  overflow:hidden;
+}
+
+.container{
+  text-align:center;
+  z-index:2;
+}
+
+/* การ์ตูน */
+.cute{
+  font-size:80px;
+  cursor:pointer;
+}
+
+/* ปุ่ม Open */
+#openBtn{
+  margin-top:20px;
+  padding:10px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  background:#ff5c8a;
+  color:white;
+  display:none;
+  cursor:pointer;
+}
+
+/* ข้อความ */
+#message{
+  margin-top:25px;
+  font-size:28px;
+  color:#d6004c;
+  display:none;
+}
+
+/* ชื่อที่ลอย */
+.name{
+  position:absolute;
+  font-size:32px;
+  color:#ff4d6d;
+  font-weight:bold;
+  animation:floatUp 5s linear forwards;
+}
+
+@keyframes floatUp{
+  from{
+    transform:translateY(0);
+    opacity:1;
+  }
+  to{
+    transform:translateY(-400px);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="cute" onclick="startLove()">😊</div>
+  <button id="openBtn" onclick="showMessage()">Open 💌</button>
+  <div id="message">I misse you 💖</div>
+</div>
+
+<script>
+let index = 0;
+
+function startLove(){
+  document.getElementById("openBtn").style.display = "inline-block";
+
+  // ชื่อเริ่มลอยขึ้นเองอัตโนมัติ
+  setInterval(createName, 500);
+}
+
+function showMessage(){
+  document.getElementById("message").style.display = "block";
+}
+
+function createName(){
+  const name = document.createElement("div");
+  name.className = "name";
+  name.innerText = "Nouna";
+
+  const spacing = 80; // ระยะห่างแต่ละชื่อ
+  const maxCols = Math.floor(window.innerWidth / spacing);
+  const x = (index % maxCols) * spacing + 20;
+
+  name.style.left = x + "px";
+  name.style.bottom = "0px";
+
+  document.body.appendChild(name);
+  index++;
+
+  setTimeout(()=>name.remove(),5000);
+}
+</script>
+
+</body>
+</html>
